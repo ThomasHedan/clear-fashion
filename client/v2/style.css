@@ -1,0 +1,138 @@
+/* general styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+h1, h2 {
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  margin-bottom: 1em;
+  padding: 1em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* header styles */
+h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 1em;
+}
+
+/* options section styles */
+#options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#options div {
+  margin-bottom: 0.5em;
+}
+
+label {
+  font-weight: bold;
+}
+
+select, input[type="checkbox"] {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+}
+
+/* products section styles */
+#products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.product {
+  width: calc(33.33% - 1em);
+  margin-bottom: 1em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0.5em;
+}
+
+.product p {
+  margin: 0.5em;
+}
+
+.product button {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product button:hover {
+  background-color: #555;
+}
+
+/* indicators section styles */
+#indicators {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1em;
+}
+
+#indicators div {
+  padding: 0.5em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#indicators span:first-child {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+#indicators span:last-child {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* responsive styles */
+@media (max-width: 768px) {
+  #products .product {
+    width: calc(50% - 1em);
+  }
+}
+
+@media (max-width: 576px) {
+  #products .product {
+    width: 100%;
+  }
+}
