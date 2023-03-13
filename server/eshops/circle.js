@@ -22,8 +22,9 @@ const parse = data => {
           .text()
           .split('€');
         price = parseFloat(price[price.length - 1].replace(',', '.'));
+      var brand = 'Circle Sportswear';
 
-      return {name, price};
+      return {name,brand,price};
     })
     .get();
 };

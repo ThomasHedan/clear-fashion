@@ -1,5 +1,6 @@
 
 const dedicatedbrand = require('./eshops/circle');
+const fs =require('fs');
 
 const websites = [[]];
 //at each index:
@@ -28,9 +29,7 @@ async function scrapeWebsites(websites) {
             const products = await scraper.scrape(eshop);
             //console.log(products);
 
-            const jsonData=JSON.stringify(products)
-
-            productsList.push(jsonData);
+            productsList.push(products);
             console.log('done');
           } catch (e) {
             console.error(e);
@@ -38,23 +37,29 @@ async function scrapeWebsites(websites) {
         
     }
 
-    console.log(productsList)
+    console.log(productsList);
 
-    const filePath = 'products.json'; // file path where you want to save the JSON data
-      
-    fetch(filePath, {
-        method: 'PUT', // use PUT method to save data to file
-        body: JSON.stringify(productsList)
-      })
-      .then(response => response.json())
-      .then(data => console.log('JSON data saved to file:', data))
-      .catch(error => console.error('Error saving JSON data:', error));
-
-    return productsList
+    return productsList;
   
 };
 
-const [,, eshop] = process.argv;
+async function saveInJsonFile(data){
+  fs.unlink('products.json', (err) => {                   
+      if (err && err.code !== 'ENOENT') throw err; 
+      fs.writeFile('products.json', data, (err) => {
+          if (err) throw err;
+          console.log('Products have been saved on a JSON file!');
+      });
+  });
+}
 
-scrapeWebsites(websites)
+async function scrapeAndSaveProductsFrom(websites){
+  data = await scrapeWebsites(websites);
+  string_data = JSON.stringify(data,null,1)
+  saveInJsonFile(string_data);
+}
+
+
+
+scrapeAndSaveProductsFrom(websites);
 
