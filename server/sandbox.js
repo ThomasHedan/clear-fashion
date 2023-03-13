@@ -1,21 +1,16 @@
 /* eslint-disable no-console, no-process-exit */
 const dedicatedbrand = require('./eshops/circle');
 
-async function sandbox (eshop = 'https://shop.circlesportswear.com/collections/collection-homme') {
-  try {
-    console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
 
-    const products = await dedicatedbrand.scrape(eshop);
 
-    console.log(products);
-    console.log('done');
-    process.exit(0);
-  } catch (e) {
-    console.error(e);
-    process.exit(1);
-  }
+async function sandbox () {
+  //2022-02-00T19:01:29.070Z
+  var x = new Date();
+  x = x- 4*1000*60*60*24;
+  y = new Date(x);
+  console.log(y.toISOString())
 }
 
-const [,, eshop] = process.argv;
 
-sandbox(eshop);
+
+sandbox();

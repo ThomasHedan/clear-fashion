@@ -16,7 +16,7 @@ console.log("ready")
 
 async function scrapeWebsites(websites) {
 
-    const productsList = [];
+    let productsList = [];
 
     for(let i=0;i<websites.length;i++){
         console.log(websites[i][2])
@@ -27,9 +27,9 @@ async function scrapeWebsites(websites) {
             console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
         
             const products = await scraper.scrape(eshop);
-            //console.log(products);
 
-            productsList.push(products);
+            productsList = productsList.concat(products);
+
             console.log('done');
           } catch (e) {
             console.error(e);

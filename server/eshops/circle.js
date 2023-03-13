@@ -1,6 +1,18 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
+
+
+
+
+function randomDate(start, end) {
+  var date = new Date(+start + Math.random() * (end - start));
+  return date;
+}
+
+
+
+
 /**
  * Parse webpage e-shop
  * @param  {String} data - html response
@@ -23,8 +35,9 @@ const parse = data => {
           .split('€');
         price = parseFloat(price[price.length - 1].replace(',', '.'));
       var brand = 'Circle Sportswear';
+      var date = randomDate(new Date()-100*1000*60*60*24,new Date())
 
-      return {name,brand,price};
+      return {name,brand,price,date};
     })
     .get();
 };
