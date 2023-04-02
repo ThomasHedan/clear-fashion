@@ -82,6 +82,6 @@ app.get('/products/:id', async (request, response) => {
   response.send(res);
 });
 
-app.listen(PORT);
+app.listen(process.env.PORT || 8092, () => console.log(`Server started on port ${process.env.PORT || 8092}`));
 
 console.log(`📡 Running on port ${PORT}`);
