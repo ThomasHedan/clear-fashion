@@ -66,6 +66,20 @@ async function getProductById(MONGODB_URI,id){
   
 }
 
+
+// get products
+
+async function getProducts(MONGODB_URI,id){
+  const client = await MongoClient.connect(MONGODB_URI, {useNewUrlParser: true});
+  const db = await client.db(MONGODB_DB_NAME);
+
+  const collection = db.collection('products');
+  console.log(result);
+  await client.close();
+  return collection;
+  
+}
+
 app.get('/products/search', async (request, response) => {
   console.log(request.query);
   const brand = request.query.brand || undefined;
