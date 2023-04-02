@@ -74,7 +74,8 @@ async function getProducts(MONGODB_URI){
   const db = await client.db(MONGODB_DB_NAME);
 
   const collection = db.collection('products');
-  console.log(collection);
+  const result = await collection.find({},{}).toArray()
+  console.log(result);
   await client.close();
   return collection;
   
