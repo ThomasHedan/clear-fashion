@@ -69,12 +69,12 @@ async function getProductById(MONGODB_URI,id){
 
 // get products
 
-async function getProducts(MONGODB_URI,id){
+async function getProducts(MONGODB_URI){
   const client = await MongoClient.connect(MONGODB_URI, {useNewUrlParser: true});
   const db = await client.db(MONGODB_DB_NAME);
 
   const collection = db.collection('products');
-  console.log(result);
+  console.log(collection);
   await client.close();
   return collection;
   
@@ -93,6 +93,12 @@ app.get('/products/search', async (request, response) => {
 app.get('/products/:id', async (request, response) => {
   const id = request.params.id;
   var res = await getProductById(MONGODB_URI,id);
+  response.send(res);
+});
+
+app.get('/products', async (request, response) => {
+  console.log(request.query);
+  var res = await getProducts(MONGODB_URI);
   response.send(res);
 });
 
