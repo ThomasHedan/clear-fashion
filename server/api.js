@@ -77,7 +77,7 @@ async function getProducts(MONGODB_URI){
   const result = await collection.find({},{}).toArray()
   console.log(result);
   await client.close();
-  return collection;
+  return result;
   
 }
 
