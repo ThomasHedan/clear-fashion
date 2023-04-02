@@ -81,6 +81,19 @@ async function getProducts(MONGODB_URI){
   
 }
 
+
+async function getBrands(MONGODB_URI){
+  const client = await MongoClient.connect(MONGODB_URI, {useNewUrlParser: true});
+  const db = await client.db(MONGODB_DB_NAME);
+
+  const collection = db.collection('products');
+  const result = await collection.distinct("brand")
+  console.log(result);
+  await client.close();
+  return result;
+  
+}
+
 app.get('/products/search', async (request, response) => {
   console.log(request.query);
   const brand = request.query.brand || undefined;
@@ -100,6 +113,13 @@ app.get('/products/:id', async (request, response) => {
 app.get('/products', async (request, response) => {
   console.log(request.query);
   var res = await getProducts(MONGODB_URI);
+  response.send(res);
+});
+
+app.get('/brands', async (request, response) => {
+  console.log(request.query);
+  var res = await getBrands(MONGODB_URI);
+  
   response.send(res);
 });
 
